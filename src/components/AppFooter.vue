@@ -6,10 +6,6 @@
   </footer>
 </template>
 
-<script setup lang="ts">
-
-</script>
-
 <style lang="css" scoped>
 .footer {
   width: 100%;
