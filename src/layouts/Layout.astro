@@ -4,6 +4,9 @@ export interface Props {
 }
 
 const { title } = Astro.props;
+
+import AppFooter from '../components/AppFooter.vue';
+import { getFullYear } from '../utils/date'
 ---
 
 <!DOCTYPE html>
@@ -16,20 +19,74 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
-		<slot />
+		<div>
+			<!-- Navigation -->
+
+
+			<!-- Content -->
+			<slot />
+
+			<!-- Footer -->
+			<AppFooter>
+				Made with ❤️️ by Gonzalo Salinas using Vue, Astro, and Netlify © {getFullYear}
+			</AppFooter>
+		</div>
 	</body>
 </html>
 <style is:global>
+	/* Font: Montserrat Regular - 400 */
+	@font-face {
+		font-family: 'Montserrat';
+		font-style: normal;
+		font-weight: 400;
+		src: url('../fonts/Montserrat-Regular.woff2') format('woff2') url('../fonts/Montserrat-Regular.woff') url('woff');
+	}
+
+	/* Font: Playfair Display Bold - 700 */
+	@font-face {
+		font-family: 'Playfair Display';
+		font-style: normal;
+		font-weight: 700;
+		src: url('../fonts/PlayfairDisplay-Bold.woff2') format('woff2') url('../fonts/PlayfairDisplay-Bold.woff') url('woff');
+	}
+
 	:root {
-		--accent: 124, 58, 237;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
+		/* Color */
+		--red: #F25757;
+		--white: #FFF;
+		--light-white: #F6F6F6;
+		--black: #000;
+		--dark-gray: #222;
+
+		/* Font */
+		--montserrat: 'Montserrat', Tahoma, Verdana, sans-serif;
+		--play-fair-display: 'Playfair Display', Garamond, serif;
+		--code: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+			Bitstream Vera Sans Mono, Courier New, monospace;
+		--bold: 700;
+		--regular: 400;
 	}
 	html {
-		font-family: system-ui, sans-serif;
-		background-color: #F6F6F6;
+		font-family: var(--montserrat);
+		background-color: var(--light-white);
 	}
 	code {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
+		font-family: var(--code)
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: var(--play-fair-display);
+		font-weight: var(--bold);
+	}
+
+	p,
+	span {
+		font-family: var(--montserrat);
+		font-weight: var(--regular);
 	}
 </style>
