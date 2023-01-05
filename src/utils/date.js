@@ -1,8 +1,4 @@
-const getFullYear = () => {
+export const getFullYear = () => {
   const date = new Date()
-  return date
-}
-
-export default {
-  getFullYear,
+  return date.getFullYear()
 }

@@ -28,65 +28,94 @@ import { getFullYear } from '../utils/date'
 
 			<!-- Footer -->
 			<AppFooter>
-				Made with ❤️️ by Gonzalo Salinas using Vue, Astro, and Netlify © {getFullYear}
+				Made with ❤️️ by Gonzalo Salinas using Vue, Astro, and Netlify © {getFullYear()}
 			</AppFooter>
 		</div>
 	</body>
 </html>
 <style is:global>
-	/* Font: Montserrat Regular - 400 */
-	@font-face {
-		font-family: 'Montserrat';
-		font-style: normal;
-		font-weight: 400;
-		src: url('../fonts/Montserrat-Regular.woff2') format('woff2') url('../fonts/Montserrat-Regular.woff') url('woff');
-	}
+/* Font: Montserrat Regular - 400 */
+@font-face {
+	font-family: 'Montserrat';
+	font-style: normal;
+	font-weight: 400;
+	src: url('../fonts/Montserrat-Regular.woff2') format('woff2') url('../fonts/Montserrat-Regular.woff') url('woff');
+}
 
-	/* Font: Playfair Display Bold - 700 */
-	@font-face {
-		font-family: 'Playfair Display';
-		font-style: normal;
-		font-weight: 700;
-		src: url('../fonts/PlayfairDisplay-Bold.woff2') format('woff2') url('../fonts/PlayfairDisplay-Bold.woff') url('woff');
-	}
+/* Font: Playfair Display Bold - 700 */
+@font-face {
+	font-family: 'Playfair Display';
+	font-style: normal;
+	font-weight: 700;
+	src: url('../fonts/PlayfairDisplay-Bold.woff2') format('woff2') url('../fonts/PlayfairDisplay-Bold.woff') url('woff');
+}
 
-	:root {
-		/* Color */
-		--red: #F25757;
-		--white: #FFF;
-		--light-white: #F6F6F6;
-		--black: #000;
-		--dark-gray: #222;
+:root {
+	/* Color */
+	--red: #F25757;
+	--white: #FFF;
+	--light-white: #F6F6F6;
+	--black: #000;
+	--dark-gray: #222;
 
-		/* Font */
-		--montserrat: 'Montserrat', Tahoma, Verdana, sans-serif;
-		--play-fair-display: 'Playfair Display', Garamond, serif;
-		--code: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
-		--bold: 700;
-		--regular: 400;
-	}
-	html {
-		font-family: var(--montserrat);
-		background-color: var(--light-white);
-	}
-	code {
-		font-family: var(--code)
-	}
+	/* Font */
+	--montserrat: 'Montserrat', Tahoma, Verdana, sans-serif;
+	--play-fair-display: 'Playfair Display', Garamond, serif;
+	--code: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+		Bitstream Vera Sans Mono, Courier New, monospace;
 
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		font-family: var(--play-fair-display);
-		font-weight: var(--bold);
-	}
+	/* Font weight */	
+	--bold: 700;
+	--regular: 400;
 
-	p,
-	span {
-		font-family: var(--montserrat);
-		font-weight: var(--regular);
-	}
+	/* Font size */
+	--size-xxxl: 3.052rem;
+	--size-xxl: 2.441rem;
+	--size-xl: 1.953rem;
+	--size-lg: 1.563rem;
+	--size-md: 1.25rem;
+	--size-base: 1rem;
+	--size-sm: 0.8rem;
+	--size-xs: 0.64rem;
+	--size-xxs: 0.512rem;
+}
+
+html,
+body {
+	font-size: var(--size-base);
+}
+
+html {
+	font-family: var(--montserrat);
+	background-color: var(--light-white);
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+code {
+	font-family: var(--code)
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--play-fair-display);
+	font-weight: var(--bold);
+}
+
+p,
+span {
+	font-family: var(--montserrat);
+	font-weight: var(--regular);
+}
+
+p {
+	line-height: 1.5;
+}
 </style>
