@@ -5,7 +5,35 @@ export interface Props {
 
 const { title } = Astro.props;
 
+/* TODO: Replace harcoded values to headless CMS option  */
+const navItems = [
+	{
+		name: 'Home',
+		type: 'link',
+		classes: [],
+	},
+	{
+		name: 'About',
+		type: 'link',
+		classes: [],
+	},
+	{
+		name: 'Portfolio',
+		type: 'link',
+		classes: [],
+	},
+	{
+		name: 'Contact',
+		type: 'link',
+		classes: [],
+	}
+]
+
+/* Components */
 import AppFooter from '../components/AppFooter.vue';
+import AppNavigation from '../components/AppNavigation.vue';
+
+/* Utils */
 import { getFullYear } from '../utils/date'
 ---
 
@@ -19,20 +47,34 @@ import { getFullYear } from '../utils/date'
 		<title>{title}</title>
 	</head>
 	<body>
-		<div>
+		<div class="main">
 			<!-- Navigation -->
+			<AppNavigation items={navItems} />
 
-
-			<!-- Content -->
-			<slot />
-
-			<!-- Footer -->
-			<AppFooter>
-				Made with ❤️️ by Gonzalo Salinas using Vue, Astro, and Netlify © {getFullYear()}
-			</AppFooter>
+			<!-- Contet Wrapper -->
+			<div class="content">
+				<!-- Content -->
+				<slot />
+				<!-- Footer -->
+				<AppFooter>
+					Made with ❤️️ by Gonzalo Salinas using Vue, Astro, and Netlify © {getFullYear()}
+				</AppFooter>
+			</div>
 		</div>
 	</body>
 </html>
+<!-- Layout CSS -->
+<style>
+.main {
+	display: flex;
+	position: relative;
+}
+
+.content {
+	
+}
+</style>
+<!-- Global CSS -->
 <style is:global>
 /* Font: Montserrat Regular - 400 */
 @font-face {
