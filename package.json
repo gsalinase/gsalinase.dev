@@ -8,11 +8,22 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "lint": "eslint ."
   },
   "dependencies": {
+    "@astrojs/image": "^0.12.1",
     "@astrojs/vue": "^1.2.2",
     "astro": "^1.9.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "sharp": "^0.31.3",
     "vue": "^3.2.30"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "prettier": "^2.8.1",
+    "prettier-plugin-astro": "^0.7.2"
   }
 }
