@@ -17,7 +17,7 @@
     </div>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="css" scoped>
 .box {
   position: absolute;
   top: -50px;
