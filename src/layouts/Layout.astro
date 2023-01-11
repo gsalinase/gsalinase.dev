@@ -32,6 +32,7 @@ const navItems = [
 /* Components */
 import AppFooter from '../components/AppFooter.vue';
 import AppNavigation from '../components/AppNavigation.vue';
+import { Image } from '@astrojs/image/components';
 
 /* Utils */
 import { getFullYear } from '../utils/date'
@@ -49,7 +50,11 @@ import { getFullYear } from '../utils/date'
 	<body>
 		<div class="main">
 			<!-- Navigation -->
-			<AppNavigation items={navItems} />
+			<AppNavigation client:visible items={navItems} welcomeMessage="Hi there!">
+				<div slot="logo">
+					<Image src="/logo.svg" height={53} width={57}/>
+				</div>
+			</AppNavigation>
 
 			<!-- Contet Wrapper -->
 			<div class="content">
@@ -66,8 +71,15 @@ import { getFullYear } from '../utils/date'
 <!-- Layout CSS -->
 <style>
 .main {
-	display: flex;
-	position: relative;
+	display: block;
+}
+
+@media screen and (min-width: 600px) {
+	.main {
+		display: flex;
+		position: relative;
+	}
+	
 }
 
 .content {
