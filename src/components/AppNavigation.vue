@@ -1,24 +1,31 @@
 <template>
   <div class="navigation" :class="isNavigationOpen ? 'navigation-open' : null">
     <!-- Hamburger/close button -->
-    <a class="navigation-toggle" href="#" @click.stop="toggleNav">
+    <a class="navigation-toggle" href="#" @click.prevent.stop="toggleNav">
       <span class="navigation-bar bar-1"></span> 
       <span class="navigation-bar bar-2"></span>
       <span class="navigation-bar bar-3"></span>
     </a>
 
     <!-- Welcome message -->
-    <div class="navigation-message">
+    <div v-if="!isNavigationOpen" class="navigation-message">
       {{ welcomeMessage }}
     </div>
 
-    <!-- Links -->
-    <ul v-if="isNavigationOpen" class="navigation-list">
-      <li class="navigation-item">{{ props.items }}</li>
-    </ul>
+    <!-- list -->
+    <div class="navigation-list-container">
+      <ul v-if="isNavigationOpen" class="navigation-list">
+        <li v-for="item in props.items" :key="item.id" class="navigation-item">
+          <!-- Links -->
+          <a v-if="item.type === 'link'" href="#">{{ item.name }}</a>
+        </li>
+      </ul>
+    </div>
 
+    <!-- Nav footer -->
     <div class="navigation-footer">
       <div class="navigation-logo">
+        <slot name="i18n-flag"></slot>
         <slot name="logo"></slot>
       </div>
     </div>
@@ -45,11 +52,10 @@ const props = defineProps({
 
 // Variables
 const isNavigationOpen = ref(false)
+//const mq = ref(matchMedia('max', 600))
 
 // Methods
-const toggleNav = (e) => {
-  console.log(e)
-}
+const toggleNav = () => isNavigationOpen.value = !isNavigationOpen.value
 
 // Expose variables and functions
 defineExpose({
@@ -61,13 +67,14 @@ defineExpose({
 <style lang="css" scoped>
 .navigation {
   display: flex;
-  flex-direction: column;
-  align-items: center;  
-  padding: 2rem 1rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
   background-color: var(--red);
 }
 
 .navigation-message {
+  display: none;
   min-width: max-content;
   font-family: var(--motserrat);
   font-size: var(--size-md);
@@ -78,7 +85,6 @@ defineExpose({
 .navigation-toggle {
   display: flex;
   flex-direction: column;
-
 }
 
 .navigation-bar {
@@ -101,18 +107,40 @@ defineExpose({
 
 }
 
+.navigation-list {
+ list-style: none; 
+ font-size: var(--size-md);  
+}
+
+.navigation-list-container {
+  
+}
+
 @media screen and (min-width: 600px) {
   .navigation {
+    flex-direction: column;
+    align-items: center;  
+    padding: 1.5rem 0.5rem;
     position: sticky;
     top:0;
     left: 0;
     bottom: 0;
-    max-height: calc(-64px + 100vh);
+    max-height: calc(-48px + 100vh);
     justify-content: space-between;
+  }
+
+  .navigation-message {
+    display: block;
+    rotate: -90deg;
   }
 
   .navigation-open {
     min-width: 200px;
+  }
+
+  .navigation-list-container {
+    display: flex;
+    list-style: none;
   }
 }
 
