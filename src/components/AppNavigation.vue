@@ -13,11 +13,11 @@
     </div>
 
     <!-- list -->
-    <div class="navigation-list-container">
-      <ul v-if="isNavigationOpen" class="navigation-list">
+    <div class="navigation-list-container" v-if="isNavigationOpen" >
+      <ul class="navigation-list">
         <li v-for="item in props.items" :key="item.id" class="navigation-item">
           <!-- Links -->
-          <a v-if="item.type === 'link'" href="#">{{ item.name }}</a>
+          <a class="navigation-link" v-if="item.type === 'link'" href="#">{{ item.name }}</a>
         </li>
       </ul>
     </div>
@@ -26,7 +26,10 @@
     <div class="navigation-footer">
       <div class="navigation-logo">
         <slot name="i18n-flag"></slot>
-        <slot name="logo"></slot>
+        
+        <div class="navigation-footer-bottom">
+          <slot name="logo"></slot>
+        </div>
       </div>
     </div>
   </div>
@@ -69,8 +72,16 @@ defineExpose({
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
+  top:0;
+  left: 0;
+  bottom: 0;
   padding: 0.5rem 1rem;
   background-color: var(--red);
+}
+
+.navigation-open {
+  min-height: calc(-16px + 100vh);
 }
 
 .navigation-message {
@@ -85,6 +96,7 @@ defineExpose({
 .navigation-toggle {
   display: flex;
   flex-direction: column;
+  order: 3;
 }
 
 .navigation-bar {
@@ -108,12 +120,38 @@ defineExpose({
 }
 
 .navigation-list {
- list-style: none; 
+ list-style: none;
+ padding-top: 2.5rem;
+ padding-left: 0;
  font-size: var(--size-md);  
 }
 
 .navigation-list-container {
-  
+  order: 2;
+  height: 100%;
+  width: 100%;
+  align-self: flex-start;
+  justify-self: flex-start;
+}
+
+.navigation-item {
+  letter-spacing: 1px;
+  border-bottom: 1px solid white;
+  padding-bottom: .4  rem;
+  margin-bottom: .8rem;
+}
+
+.navigation-list {
+  width: 60%;
+}
+
+.navigation-link {
+  text-decoration: none;
+  color: var(--white);
+}
+
+.navigation-footer {
+  order: 1;
 }
 
 @media screen and (min-width: 600px) {
@@ -121,10 +159,6 @@ defineExpose({
     flex-direction: column;
     align-items: center;  
     padding: 1.5rem 0.5rem;
-    position: sticky;
-    top:0;
-    left: 0;
-    bottom: 0;
     max-height: calc(-48px + 100vh);
     justify-content: space-between;
   }
@@ -132,23 +166,35 @@ defineExpose({
   .navigation-message {
     display: block;
     rotate: -90deg;
+    order: 2;
+  }
+
+  .navigation-toggle {
+    order: 1;
   }
 
   .navigation-open {
+    padding-left: 1.9rem;
+    align-items: flex-start; 
     min-width: 200px;
+    min-height: inherit;
   }
 
   .navigation-list-container {
     display: flex;
     list-style: none;
   }
+
+  .navigation-open .navigation-logo {
+    margin-left: -12px;
+  }
+
+  .navigation-footer {
+    order: 3;
+  }
 }
 
 @media screen and (min-width: 768px) {
-  .navigation {
-
-  }
-
   .navigation-open {
     min-width: 300px;
   }
